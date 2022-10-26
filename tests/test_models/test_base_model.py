@@ -1,0 +1,64 @@
+#!/usr/bin/python3
+'''This module contains the unit tests for the BaseModel class
+'''
+import unittest
+from datetime import datetime
+import uuid
+
+from models.base_model import BaseModel
+
+
+class TestBaseModel(unittest.TestCase):
+    '''Test class for BaseModel class
+    '''
+
+    def test_if_BaseModel_is_instanciable(self):
+        '''Instanciate BaseModel and verify the type of the instance
+        '''
+        base = BaseModel()
+        self.assertEqual(type(base).__name__, 'BaseModel')
+
+    def test_id_of_instance_of_BaseModel(self):
+        '''Verify if id exist and if it is equal to uuid4
+        '''
+        base = BaseModel()
+        self.assertTrue(hasattr(base, 'id'))
+
+    def test_verify_if_id_is_str(self):
+        '''Verify if id is an str
+        '''
+        base = BaseModel()
+        self.assertEqual(type(base.id), 'str')
+    
+    def test_verify_if_id_is_str(self):
+        '''Verify if id is an uuid4
+        '''
+        base = BaseModel()
+        self.assertEqual(uuid.UUID(base.id).version, 4)
+
+    def test_createdat_of_instance_of_BaseModel(self):
+        '''Verify if created_at attribute exist and
+        if it is in datetime format
+        '''
+        base = BaseModel()
+        self.assertTrue(hasattr(base, 'created_at'))
+        self.assertTrue(type(base.created_at) is datetime)
+
+    def test_updatedat_of_instance_of_BaseModel(self):
+        '''Verify if created_at attribute exist and
+        if it is in datetime format
+        '''
+        base = BaseModel()
+        self.assertTrue(hasattr(base, 'updated_at'))
+        self.assertTrue(type(base.updated_at) is datetime)
+
+    def test_verif_if_created_and_updated_are_same(self):
+        '''verify if created_at and updated_at are same when
+        an object is created
+        '''
+        base = BaseModel()
+        self.assertEqual(base.created_at, base.updated_at)
+
+
+if __name__ == '__main__':
+    unittest.main()
