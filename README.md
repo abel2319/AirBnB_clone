@@ -1,4 +1,6 @@
 AirBnB clone
+==========================
+![Logo ](url "images/logo.png")
 
 I know you were waiting for it: it’s here!
 
@@ -50,19 +52,20 @@ The console will be a tool to validate this storage engine
 Examples of the console
 Your shell should work like this in interactive mode:
 
-$ ./console.py
-(hbnb) help
+	$ ./console.py
+	(hbnb) help
 
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
+	Documented commands (type help <topic>):
+	========================================
+	EOF  help  quit
 
-(hbnb) 
-(hbnb) 
-(hbnb) quit
-$
+	(hbnb) 
+	(hbnb) 
+	(hbnb) quit
+	$
 
 
 Data diagram
 
+![Diagram ](url "images/diagram.jpg")
 
