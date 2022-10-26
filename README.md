@@ -1,6 +1,6 @@
 AirBnB clone
 ==========================
-![Logo ](url "images/logo.png")
+![Logo ](./images/logo.png)
 
 I know you were waiting for it: it’s here!
 
@@ -67,5 +67,5 @@ Your shell should work like this in interactive mode:
 
 Data diagram
 
-![Diagram ](url "images/diagram.jpg")
+![Diagram ](./images/diagram.jpg)
 
