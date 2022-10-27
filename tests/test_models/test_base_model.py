@@ -19,7 +19,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(base).__name__, 'BaseModel')
 
     def test_id_of_instance_of_BaseModel(self):
-        '''Verify if id exist and if it is equal to uuid4
+        '''Verify if id exist
         '''
         base = BaseModel()
         self.assertTrue(hasattr(base, 'id'))
@@ -58,6 +58,32 @@ class TestBaseModel(unittest.TestCase):
         '''
         base = BaseModel()
         self.assertEqual(base.created_at, base.updated_at)
+
+    def test_save_method(self):
+        '''Verify if when the save() method is call the
+        update_at attribute is update
+        '''
+        base = BaseModel()
+        base.save()
+        self.assertGreater(base.updated_at, base.created_at)
+
+    def test_to_dict_method(self):
+        '''Verify if when the save() method is call the
+        update_at attribute is update
+        '''
+        base = BaseModel()
+        dict1 = base.to_dict()
+        self.assertTrue(hasattr(base, 'to_dict'))
+        self.assertTrue(dict1)
+        self.assertTrue('__class__' in dict1.keys())
+        #self.assertEqual(type(dict1['created_at']), dict.isoformat())
+
+    def test_str_method(self):
+        '''Test represention of an instance
+        '''
+        base = BaseModel()
+        rep = base.__str__()
+        self.assertEqual("[{}] ({}) {}".format(type(base).__name__, base.id, base.__dict__), rep)
 
 
 if __name__ == '__main__':
