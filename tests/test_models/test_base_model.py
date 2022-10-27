@@ -11,7 +11,7 @@ from models.base_model import BaseModel
 class TestBaseModel(unittest.TestCase):
     '''Test class for BaseModel class
     '''
-
+    #---------------------------------------------------------------
     def test_if_BaseModel_is_instanciable(self):
         '''Instanciate BaseModel and verify the type of the instance
         '''
@@ -84,7 +84,32 @@ class TestBaseModel(unittest.TestCase):
         base = BaseModel()
         rep = base.__str__()
         self.assertEqual("[{}] ({}) {}".format(type(base).__name__, base.id, base.__dict__), rep)
+    #-------------------------------------------------------------------
 
+    def test_create_object_without_arguments(self):
+        ''''''
+        base = BaseModel()
+        self.assertTrue(base)
+
+    def test_create_object_with_args(self):
+        ''''''
+        base = BaseModel('airbnb', 404)
+        self.assertTrue(base)
+
+    def test_create_object_with_kwargs(self):
+        ''''''
+        base1 = BaseModel()
+        kwargs = base1.to_dict()
+        base2 = BaseModel(**kwargs)
+        self.assertTrue(base2)
+
+    def test_add_new_attribute_using_kwargs(self):
+        ''''''
+        base1 = BaseModel()
+        kwargs = base1.to_dict()
+        kwargs['name'] = 'airbnb'
+        base2 = BaseModel(**kwargs)
+        self.assertTrue(hasattr(base2, 'name'))
 
 if __name__ == '__main__':
     unittest.main()

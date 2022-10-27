@@ -7,12 +7,20 @@ import datetime
 class BaseModel:
     '''BaseModel defines all common attributes/methods for other classes
     '''
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         '''Initialization
+        Args:
+            args (list):
+            kwargs (dict):
         '''
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = self.created_at
+        if not kwargs:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = self.created_at
+        else:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    setattr(self, key, value)
 
     def save(self):
         '''updates the public instance attribute updated_at
