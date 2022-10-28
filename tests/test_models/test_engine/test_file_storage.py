@@ -13,23 +13,25 @@ class TestFileStorage(unittest.TestCase):
     def test_verify_instance(self):
         ''''''
         fs = FileStorage()
-        self.asserTrue(fs)
+        self.assertTrue(fs)
 
     def test_verify_class_attributes(self):
         ''''''
         fs = FileStorage()
-        assertTrue(hasattr(fs, 'objects'))
-        assertTrue(hasattr(fs, 'file_path'))
+        self.assertFalse(hasattr(fs, '__objects'))
+        self.assertFalse(hasattr(fs, '__file_path'))
     
     def test_verify_class_attributes_type(self):
         ''''''
         fs = FileStorage()
-        obj = FileStorage.all()
-        assertEqual(type(fs.objects), 'FileStorage')
+        obj = fs.all()
+        #self.assertEqual(type(fs.objects), dict)
 
     def test_verify_class_methods_all(self):
         ''''''
         fs = FileStorage()
+        dict1 = fs.all()
+        self.assertEqual(type(dict1).__name__, 'dict')
 
 
 
