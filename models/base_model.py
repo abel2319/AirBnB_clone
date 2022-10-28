@@ -2,6 +2,7 @@
 '''This module defines all basics classes for the project'''
 import uuid
 import datetime
+from models import storage
 
 
 class BaseModel:
