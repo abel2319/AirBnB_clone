@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 ''''''
-
+import json
 
 
 class FileStorage:
     ''''''
-    __file_path = ''
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self):
@@ -25,10 +25,13 @@ class FileStorage:
         '''Save all objects in a json file
         '''
         with open(self.__file_path, mode="w", encoding="utf-8") as file:
-        json.dump(my_obj, file)
+        json.dump(self.__objects, file)
     
     def reload(self):
         '''Reload all objects from a json file
         '''
-        with open(self.__file_path, encoding="utf-8") as file:
-        return (json.load(file))
+        try:
+            with open(self.__file_path, encoding="utf-8") as file:
+            return (json.load(file))
+        except FileNotFoundError:
+            return
