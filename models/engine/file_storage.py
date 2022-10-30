@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-''''''
+'''module to define class FileStorage'''
 import json
 
 
 class FileStorage:
-    ''''''
+    '''class FileStorage that serializes instances
+    to a JSON file and deserializes JSON file to instances
+    '''
     __file_path = 'file.json'
     __objects = {}
 
@@ -25,13 +27,20 @@ class FileStorage:
         '''Save all objects in a json file
         '''
         with open(self.__file_path, mode="w", encoding="utf-8") as file:
-        json.dump(self.__objects, file)
+            tmp = {}
+            for key in self.__objects:
+                tmp[key] = self.__objects[key].to_dict()
+            json.dump(tmp, file)
     
     def reload(self):
         '''Reload all objects from a json file
         '''
         try:
-            with open(self.__file_path, encoding="utf-8") as file:
-            return (json.load(file))
-        except FileNotFoundError:
+            with open(self.__file_path, 'r') as file:
+                tmp = json.load(file)
+                for key in tmp:
+                    keys = key.split('.')
+                    if keys[0] == 'BaseModel':
+                        self.__objects[key] = BaseModel(**tmp[key])
+        except:
             return
