@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 '''module to define class FileStorage'''
 import json
+from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -44,5 +46,5 @@ class FileStorage:
                         self.__objects[key] = BaseModel(**tmp[key])
                     elif keys[0] == 'User':
                         self.__objects[key] = User(**tmp[key])
-        except:
+        except FileNotFoundError:
             return

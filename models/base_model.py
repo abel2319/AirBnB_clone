@@ -2,7 +2,7 @@
 '''This module defines all basics classes for the project'''
 import uuid
 import datetime
-from models import storage
+#from models import storage
 
 
 class BaseModel:
@@ -14,6 +14,7 @@ class BaseModel:
             args (list):
             kwargs (dict):
         '''
+        from models import storage
         if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
@@ -22,12 +23,16 @@ class BaseModel:
         else:
             for key, value in kwargs.items():
                 if key != '__class__':
-                    setattr(self, key, value)
+                    if key in ('created_at', 'updated_at'):
+                        setattr(self, key, datetime.datetime.fromisoformat(value))
+                    else:
+                        setattr(self, key, value)
 
     def save(self):
         '''updates the public instance attribute updated_at
         with the current datetime
         '''
+        from models import storage
         self.updated_at = datetime.datetime.now()
         storage.save()
     
@@ -37,8 +42,8 @@ class BaseModel:
         '''
         ins_dict = self.__dict__.copy()
         ins_dict['__class__'] = type(self).__name__
-        ins_dict['created_at'] = ins_dict['created_at'].isoformat()
-        ins_dict['updated_at'] = ins_dict['updated_at'].isoformat()
+        ins_dict['created_at'] = self.__dict__['created_at'].isoformat()
+        ins_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
         return (ins_dict)
 
     def __str__(self):
