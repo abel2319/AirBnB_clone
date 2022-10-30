@@ -8,7 +8,13 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     ''''''
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User']
+    classes = ['BaseModel',
+               'User',
+               'Amenity',
+               'State',
+               'City',
+               'Place',
+               'Review']
 
     #def do_help(self, arg):
      #   '''get all commandes
