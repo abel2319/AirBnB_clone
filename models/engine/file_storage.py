@@ -42,5 +42,7 @@ class FileStorage:
                     keys = key.split('.')
                     if keys[0] == 'BaseModel':
                         self.__objects[key] = BaseModel(**tmp[key])
+                    elif keys[0] == 'User':
+                        self.__objects[key] = User(**tmp[key])
         except:
             return
