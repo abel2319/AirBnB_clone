@@ -2,7 +2,6 @@
 '''This module defines all basics classes for the project'''
 import uuid
 import datetime
-#from models import storage
 
 
 class BaseModel:
@@ -24,7 +23,8 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != '__class__':
                     if key in ('created_at', 'updated_at'):
-                        setattr(self, key, datetime.datetime.fromisoformat(value))
+                        setattr(self, key,
+                                datetime.datetime.fromisoformat(value))
                     else:
                         setattr(self, key, value)
 
@@ -35,7 +35,7 @@ class BaseModel:
         from models import storage
         self.updated_at = datetime.datetime.now()
         storage.save()
-    
+
     def to_dict(self):
         '''function that returns a dictionary containing all keys/values
         of __dict__ of the instance
@@ -48,4 +48,5 @@ class BaseModel:
 
     def __str__(self):
         '''String representation of an instance'''
-        return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
+        return ("[{}] ({}) {}".format(type(self).__name__,
+                                      self.id, self.__dict__))

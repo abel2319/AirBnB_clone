@@ -16,10 +16,6 @@ class HBNBCommand(cmd.Cmd):
                'Place',
                'Review']
 
-    #def do_help(self, arg):
-     #   '''get all commandes
-      #  '''
-
     def do_quit(self, arg):
         '''Quit command to exit the program
         '''
@@ -141,6 +137,12 @@ class HBNBCommand(cmd.Cmd):
                         setattr(obj, args[2], args[3])
 
             storage.save()
+
+    def default(self, arg):
+        '''
+        '''
+        args = arg.split('.')
+        print(args[0])
 
 
 if __name__ == '__main__':

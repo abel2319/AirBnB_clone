@@ -4,14 +4,13 @@
 import unittest
 from datetime import datetime
 import uuid
-
 from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
     '''Test class for BaseModel class
     '''
-    #---------------------------------------------------------------
+    '''---------------------------------------------------------------'''
     def test_if_BaseModel_is_instanciable(self):
         '''Instanciate BaseModel and verify the type of the instance
         '''
@@ -19,27 +18,23 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(base).__name__, 'BaseModel')
 
     def test_id_of_instance_of_BaseModel(self):
-        '''Verify if id exist
-        '''
+        '''Verify if id exist'''
         base = BaseModel()
         self.assertTrue(hasattr(base, 'id'))
 
     def test_verify_if_id_is_str(self):
-        '''Verify if id is an str
-        '''
+        '''Verify if id is an str'''
         base = BaseModel()
         self.assertEqual(type(base.id), 'str')
-    
+
     def test_verify_if_id_is_str(self):
-        '''Verify if id is an uuid4
-        '''
+        '''Verify if id is an uuid4'''
         base = BaseModel()
         self.assertEqual(uuid.UUID(base.id).version, 4)
 
     def test_createdat_of_instance_of_BaseModel(self):
         '''Verify if created_at attribute exist and
-        if it is in datetime format
-        '''
+        if it is in datetime format'''
         base = BaseModel()
         self.assertTrue(hasattr(base, 'created_at'))
         self.assertTrue(type(base.created_at) is datetime)
@@ -76,15 +71,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(base, 'to_dict'))
         self.assertTrue(dict1)
         self.assertTrue('__class__' in dict1.keys())
-        #self.assertEqual(type(dict1['created_at']), dict.isoformat())
+#       self.assertEqual(type(dict1['created_at']), dict.isoformat())
 
     def test_str_method(self):
-        '''Test represention of an instance
-        '''
+        '''Test represention of an instance'''
         base = BaseModel()
         rep = base.__str__()
-        self.assertEqual("[{}] ({}) {}".format(type(base).__name__, base.id, base.__dict__), rep)
-    #-------------------------------------------------------------------
+        self.assertEqual("[{}] ({}) {}".format(type(base).__name__,
+                                               base.id, base.__dict__), rep)
+    '''-------------------------------------------------------------------'''
 
     def test_create_object_without_arguments(self):
         ''''''
@@ -110,6 +105,7 @@ class TestBaseModel(unittest.TestCase):
         kwargs['name'] = 'airbnb'
         base2 = BaseModel(**kwargs)
         self.assertTrue(hasattr(base2, 'name'))
+
 
 if __name__ == '__main__':
     unittest.main()

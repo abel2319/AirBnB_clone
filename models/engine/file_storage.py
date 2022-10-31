@@ -38,7 +38,7 @@ class FileStorage:
             for key in self.__objects:
                 tmp[key] = self.__objects[key].to_dict()
             json.dump(tmp, file)
-    
+
     def reload(self):
         '''Reload all objects from a json file
         '''
