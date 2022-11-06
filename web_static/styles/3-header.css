@@ -6,6 +6,9 @@ header{
 }
 
 header .logo{
+	width: 136px;
+	height: 60px;
+	background-image: url("../images/logo.png");
 	position: absolute;
 	left: 20px;
 }
