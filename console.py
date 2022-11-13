@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''''''
+'''Module that define the console'''
 import cmd
 from models import storage
 from models.base_model import BaseModel
