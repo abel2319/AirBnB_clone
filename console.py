@@ -89,11 +89,12 @@ class HBNBCommand(cmd.Cmd):
         '''
         args = arg.split(' ')
         if self.check_class(args[0]):
-            if len(args) >= 2 and self.check_id(args[0] + "." + args[1]):
-                key = args[0] + "." + args[1]
-                objs = storage.all()
-                del objs[key]
-                storage.save()
+            if len(args) >= 2:
+                if self.check_id(args[0] + "." + args[1]):
+                    key = args[0] + "." + args[1]
+                    objs = storage.all()
+                    del objs[key]
+                    storage.save()
             else:
                 print("** instance id missing **")
 
@@ -123,21 +124,22 @@ class HBNBCommand(cmd.Cmd):
         '''
         args = arg.split(' ')
         if self.check_class(args[0]):
-            if len(args) >= 2 and self.check_id(args[0] + "." + args[1]):
-                key = args[0] + "." + args[1]
-                if len(args) == 2:
-                    print('** attribute name missing **')
-                elif len(args) == 3:
-                    print('** value missing **')
-                else:
-                    obj = storage.all()[key]
-                    obj_dict = obj.to_dict()
-                    if args[2] in obj_dict.keys():
-                        setattr(obj, args[2], type(obj_dict[args[2]])(args[3]))
+            if len(args) >= 2:
+                if self.check_id(args[0] + "." + args[1]):
+                    key = args[0] + "." + args[1]
+                    if len(args) == 2:
+                        print('** attribute name missing **')
+                    elif len(args) == 3:
+                        print('** value missing **')
                     else:
-                        setattr(obj, args[2], args[3])
-            '''else:
-                print("** instance id missing **")'''
+                        obj = storage.all()[key]
+                        obj_dict = obj.to_dict()
+                        if args[2] in obj_dict.keys():
+                            setattr(obj, args[2], type(obj_dict[args[2]])(args[3]))
+                        else:
+                            setattr(obj, args[2], args[3])
+            else:
+                print("** instance id missing **")
 
             storage.save()
 
