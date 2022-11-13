@@ -95,6 +95,8 @@ class HBNBCommand(cmd.Cmd):
                 objs = storage.all()
                 del objs[key]
                 storage.save()
+            else:
+                print("** instance id missing **")
 
     def do_all(self, arg):
         '''Prints all string representation of all
@@ -135,6 +137,8 @@ class HBNBCommand(cmd.Cmd):
                         setattr(obj, args[2], type(obj_dict[args[2]])(args[3]))
                     else:
                         setattr(obj, args[2], args[3])
+            else:
+                print("** instance id missing **")
 
             storage.save()
 
