@@ -78,7 +78,7 @@ if result is None or result == "":
     
 model_id = result
 
-result = exec_command(my_console, "update BaseModel 1{}1 test_name \"test_value\"".format(model_id))
+result = exec_command(my_console, "destroy BaseModel 1{}1".format(model_id))
 if result is None or result == "":
     print("FAIL: no output")
     
