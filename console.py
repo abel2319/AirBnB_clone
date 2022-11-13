@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return (False)
         return (True)
-        
+
     def check_id(self, arg):
         '''verify if arg in a class name
         '''
