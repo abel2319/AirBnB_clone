@@ -8,7 +8,7 @@ class Place(BaseModel):
     '''class Place that inhenirts from BaseModel
     '''
     city_id = ""
-    user_city = ""
+    user_id = ""
     name = ""
     description = ""
     number_rooms = 0
