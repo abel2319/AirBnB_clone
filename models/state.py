@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''Module for the class User
+'''Module for the class State
 '''
 from models.base_model import BaseModel
 
