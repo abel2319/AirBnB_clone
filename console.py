@@ -165,7 +165,9 @@ class HBNBCommand(cmd.Cmd):
         '''
         '''
         args = arg.split('.')
-        print(args[0])
+        if args[1] == 'all()':
+            string = f"self.do_all('{args[0]}')"
+            eval(string)
 
 
 if __name__ == '__main__':
