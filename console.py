@@ -161,14 +161,14 @@ class HBNBCommand(cmd.Cmd):
 
             storage.save()
 
-    def do_count(self, args):
+    def do_count(self, arg):
         """retrieve the number of instances of a class:
         <class name>.count().
         """
-        arg = args.split(' ')
+        args = arg.split(' ')
         cnt = 0
         for obj in storage.all().values():
-            if arg[0] == obj.__class__.__name__:
+            if args[0] == obj.__class__.__name__:
                 cnt += 1
         print(cnt)
 
@@ -179,8 +179,9 @@ class HBNBCommand(cmd.Cmd):
         if args[1] == 'all()':
             string = f"self.do_all('{args[0]}')"
             eval(string)
-        elif arg[1] == 'count()':
-            eval(f"self.do_count({arg[0]})")
+        elif args[1] == 'count()':
+            string = f"self.do_count('{args[0]}')"
+            eval(string)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
