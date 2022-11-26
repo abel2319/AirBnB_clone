@@ -27,8 +27,8 @@ class FileStorage:
         Args:
             obj (new object):
         '''
-        key = type(obj).__name__ + '.' + obj.id
-        FileStorage.__objects[key] = obj
+        key = obj.__class__.__name__ + '.' + obj.id
+        self.__objects[key] = obj
 
     def save(self):
         '''Save all objects in a json file
